@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '../models/product.dart';
+import 'package:provider/provider.dart';
+import '../models/cart.dart';
 import '../widgets/product_card.dart';
+import '../models/product.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<Product> products = [
@@ -12,9 +14,28 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<Cart>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Главная страница'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.shopping_cart),
+            onPressed: () {
+              Navigator.of(context).pushNamed('/cart');
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Text(
+                cart.itemCount.toString(),
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),

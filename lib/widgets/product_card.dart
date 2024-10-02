@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/product.dart';
-import '../screens/product_detail_screen.dart'; // Импорт экрана с деталями
+import '../screens/product_detail_screen.dart'; // Экран деталей товара
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -9,7 +9,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
@@ -25,7 +25,6 @@ class ProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            // Изображение товара
             ClipRRect(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10),
@@ -43,7 +42,6 @@ class ProductCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  // Название товара
                   Text(
                     product.title,
                     style: TextStyle(
@@ -52,7 +50,6 @@ class ProductCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 5),
-                  // Цена товара
                   Text(
                     '\$${product.price.toStringAsFixed(2)}',
                     style: TextStyle(
